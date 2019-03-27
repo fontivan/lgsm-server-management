@@ -1,0 +1,11 @@
+---
+- hosts: ark
+  remote_user: 'arkserver'
+  roles:
+  - ark-backup
+  
+- hosts: minecraft
+  remote_user: 'minecraft'
+  roles:
+  - minecraft-backup
+...
