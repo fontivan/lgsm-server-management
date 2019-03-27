@@ -1,0 +1,7 @@
+---
+- name: 'Update cache, Upgrade Packages, Auto-remove unnecessary'
+  apt:
+    autoremove: yes
+    update_cache: yes
+    upgrade: yes
+...
