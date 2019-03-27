@@ -4,5 +4,4 @@
   become_method: sudo
   roles:
   - ubuntu-upgrade-packages
-  - ubuntu-upgrade-release
 ...
