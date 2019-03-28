@@ -1,0 +1,8 @@
+---
+- name: 'Shut down ARK server'
+  become: true
+  become_user: 'arkserver'
+  command: '~/arkserver stop'
+  tags: ark
+  ignore_errors: yes
+...

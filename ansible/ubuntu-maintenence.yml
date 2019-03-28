@@ -1,7 +1,0 @@
----
-- hosts: ubuntu
-  become: yes
-  become_method: sudo
-  roles:
-  - ubuntu-upgrade-packages
-...

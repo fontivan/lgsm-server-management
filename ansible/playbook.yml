@@ -2,10 +2,17 @@
 - hosts: ark
   remote_user: 'arkserver'
   roles:
-  - ark-backup
+  - ubuntu
+  - ark
   
 - hosts: minecraft
   remote_user: 'minecraft'
   roles:
-  - minecraft-backup
+  - ubuntu
+  - minecraft
+
+# - hosts: testbed
+#   remote_user: 'user'
+#   roles:
+#   - ubuntu
 ...

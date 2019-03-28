@@ -1,0 +1,8 @@
+---
+- name: Import shutdown
+  import_tasks: shutdown.yml
+- name: Import backup
+  import_tasks: backup.yml
+- name: Import start
+  import_tasks: start.yml
+...

@@ -1,0 +1,4 @@
+---
+- name: Import tasks
+  import_tasks: update-packages.yml
+...
