@@ -3,7 +3,7 @@
   become: true
   become_user: 'arkserver'
   command: '~/arkserver backup'
-  tags: ark
+  tags: ark, backup
   async: 1200
   poll: 30
 ...

@@ -3,6 +3,6 @@
   become: true
   become_user: 'arkserver'
   command: '~/arkserver stop'
-  tags: ark
+  tags: ark, stop
   ignore_errors: yes
 ...

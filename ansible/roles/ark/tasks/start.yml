@@ -3,5 +3,5 @@
   become: true
   become_user: 'arkserver'
   command: '~/arkserver start'
-  tags: ark
+  tags: ark, start
 ...

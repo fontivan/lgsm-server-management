@@ -6,5 +6,5 @@
     path: '~/foolcraft3'
     dest: '~/backups/foolcraft3-{{ ansible_date_time.date }}-{{ ansible_date_time.time }}.tar.gz'
     format: 'gz'
-  tags: minecraft
+  tags: minecraft, backup
 ...
