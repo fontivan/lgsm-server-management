@@ -1,9 +1,9 @@
 ---
-# - name: 'Backup ARK server'
-#   become: true
-#   become_user: 'arkserver'
-#   command: '~/arkserver backup'
-#   tags: ark
-#   async: 1200
-#   poll: 30
+- name: 'Backup ARK server'
+  become: true
+  become_user: 'arkserver'
+  command: '~/arkserver backup'
+  tags: ark
+  async: 1200
+  poll: 30
 ...
