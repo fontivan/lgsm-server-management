@@ -1,0 +1,26 @@
+---
+- hosts: minecraft
+  remote_user: 'minecraft'
+  tasks:
+    - include_role:
+        name: ../roles/minecraft/stop
+        apply:
+          tags:
+            - stop
+      tags:
+        - stop
+    - include_role:
+        name: ../roles/minecraft/backup
+        apply:
+          tags:
+            - backup
+      tags:
+        - backup
+    - include_role:
+        name: ../roles/minecraft/start
+        apply:
+          tags:
+            - start
+      tags:
+        - start
+...

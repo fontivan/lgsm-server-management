@@ -6,11 +6,12 @@ export ANSIBLE_DIR="${MY_DIR}/ansible"
 # Set the ansible config so we get timestamps
 export ANSIBLE_CONFIG="${ANSIBLE_DIR}/ansible.cfg"
 
-#Call the playbook with the args passed into this bash script
-ansible-playbook -i ${ANSIBLE_DIR}/inventory.yml $@ ${ANSIBLE_DIR}/playbook.yml --ask-become-pass
+ANSIBLE_VER=$(ansible --version | grep 'ansible 2')
 
-# EG:
-# ./run.sh -t ubuntu
-# ./run.sh -t ubuntu -vvv
-# ./run.sh -t ubuntu -t ark -t minecraft
-
+if [[ "$ANSIBLE_VER" =~ ^(ansible 2.[7-9].[0-9]*)$ ]]; then
+    echo "Ansible version OK"
+    exit 0
+else
+    echo "Ansible version 2.7+ required"
+    exit 1
+fi

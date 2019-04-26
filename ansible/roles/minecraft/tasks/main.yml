@@ -1,8 +1,0 @@
----
-- name: Import stop
-  import_tasks: stop.yml
-- name: Import backup
-  import_tasks: backup.yml
-- name: Import start
-  import_tasks: start.yml
-...

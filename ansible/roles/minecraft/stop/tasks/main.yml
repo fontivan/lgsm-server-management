@@ -2,6 +2,5 @@
 - name: 'Kill Java proccesses'
   command: 'killall java'
   become: true
-  tags: minecraft, stop
   ignore_errors: yes
 ...

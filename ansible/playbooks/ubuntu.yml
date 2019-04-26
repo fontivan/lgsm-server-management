@@ -1,0 +1,18 @@
+---
+- hosts: ark, minecraft
+  remote_user: 'user'
+  tasks:
+    - include_role:
+        name: ../roles/ubuntu/update-packages
+        apply:
+          tags:
+            - update
+      tags:
+        - update
+    - include_role:
+        name: ../roles/ubuntu/reboot
+        apply:
+          tags:
+            - reboot
+      tags:
+        - reboot

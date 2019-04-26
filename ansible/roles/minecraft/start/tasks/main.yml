@@ -3,5 +3,4 @@
   become: true
   become_user: 'minecraft'
   command: '~/foolcraft3/start.sh'
-  tags: minecraft, start
 ...
