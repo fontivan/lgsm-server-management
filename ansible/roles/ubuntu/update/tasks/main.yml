@@ -5,5 +5,4 @@
     autoremove: yes
     update_cache: yes
     upgrade: yes
-  tags: ubuntu
 ...

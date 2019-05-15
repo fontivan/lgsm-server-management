@@ -1,16 +1,19 @@
 ---
-- hosts: ark, minecraft
+- hosts:
+    - ark
+    - minecraft
+    - testbed
   remote_user: 'user'
   tasks:
     - include_role:
-        name: ../roles/ubuntu/update-packages
+        name: '../roles/ubuntu/update'
         apply:
           tags:
             - update
       tags:
         - update
     - include_role:
-        name: ../roles/ubuntu/reboot
+        name: '../roles/ubuntu/reboot'
         apply:
           tags:
             - reboot
