@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 # Reliably get the dir this is in
 export MY_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 export ANSIBLE_DIR="${MY_DIR}/ansible"
