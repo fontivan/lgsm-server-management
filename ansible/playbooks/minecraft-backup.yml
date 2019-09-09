@@ -1,0 +1,8 @@
+---
+- hosts: minecraft
+  remote_user: 'minecraft'
+  roles:
+    - ../roles/minecraft-stop-server
+    - ../roles/minecraft-do-backup
+    - ../roles/minecraft-start-server
+...

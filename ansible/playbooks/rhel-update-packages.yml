@@ -1,0 +1,8 @@
+---
+- hosts:
+    - centos-testbed
+  remote_user: 'user'
+  roles:
+    - ../roles/rhel-update-packages
+    - ../roles/restart-system
+...

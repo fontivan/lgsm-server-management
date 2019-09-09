@@ -1,0 +1,10 @@
+---
+- hosts:
+    - ark
+    - minecraft
+    - ubuntu-testbed
+  remote_user: 'user'
+  roles:
+    - ../roles/ubuntu-update-packages
+    - ../roles/restart-system
+...

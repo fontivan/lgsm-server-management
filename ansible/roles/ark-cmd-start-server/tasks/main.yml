@@ -1,0 +1,6 @@
+---
+- name: 'Start ARK server'
+  become: true
+  become_user: 'arkserver'
+  command: '~/arkserver start'
+...

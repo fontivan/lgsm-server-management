@@ -1,0 +1,6 @@
+---
+- name: 'Kill Java proccesses'
+  command: 'killall java'
+  become: true
+  ignore_errors: yes
+...

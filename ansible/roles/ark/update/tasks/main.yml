@@ -1,9 +1,0 @@
----
-- name: 'Update ARK server'
-  become: true
-  become_user: 'arkserver'
-  command: '~/arkserver update'
-  tags: ark
-  async: 1200
-  poll: 30
-...

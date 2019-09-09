@@ -1,0 +1,8 @@
+---
+- hosts: ark
+  remote_user: "arkserver"
+  roles:
+    - ../roles/ark-cmd-stop-server
+    - ../roles/ark-cmd-do-backup
+    - ../roles/ark-cmd-start-server
+...

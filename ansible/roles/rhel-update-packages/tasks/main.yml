@@ -1,0 +1,9 @@
+---
+- name: 'Update cache, Upgrade Packages, Auto-remove unnecessary'
+  become: true
+  yum:
+    autoremove: yes
+    update_cache: yes
+    name: "*"
+    state: latest
+...

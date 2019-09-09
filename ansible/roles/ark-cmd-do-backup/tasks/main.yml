@@ -1,0 +1,6 @@
+---
+- name: 'Backup ARK server'
+  become: true
+  become_user: 'arkserver'
+  command: '~/arkserver backup'
+...
