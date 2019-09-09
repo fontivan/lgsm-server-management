@@ -1,0 +1,4 @@
+---
+- import_playbook: minecraft-stop.yaml
+- import_playbook: minecraft-start.yaml
+...

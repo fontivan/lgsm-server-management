@@ -3,5 +3,5 @@
     - minecraft
   remote_user: 'minecraft'
   roles:
-    - ../roles/minecraft-update-server
+    - ../roles/minecraft-stop-server
 ...

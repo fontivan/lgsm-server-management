@@ -3,5 +3,5 @@
     - ark
   remote_user: 'arkserver'
   roles:
-    - ../roles/ark-cmd-start-server
+    - ../roles/ark-cmd-stop-server
 ...
