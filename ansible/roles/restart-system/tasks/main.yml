@@ -2,5 +2,5 @@
 - name: 'Reboot'
   become: true
   reboot:
-    reboot_timeout: 600
+    reboot_timeout: 1200
 ...
