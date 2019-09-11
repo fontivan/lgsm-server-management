@@ -2,5 +2,5 @@
 - name: 'Start Minecraft server'
   become: true
   become_user: 'minecraft'
-  command: '~/foolcraft3/start.sh'
+  command: '~/foolcraft3-v1.6/start.sh'
 ...
