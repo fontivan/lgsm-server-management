@@ -1,6 +1,7 @@
 ---
-- name: 'Kill Java proccesses'
-  command: 'killall java'
-  become: true
-  ignore_errors: yes
+- name: "Kill screen session running minecraft"
+  command: "screen -S {{ minecraft.server.screen_session_name }} -X quit"
+
+- name: "Cleanup old screen sessions"
+  command: "screen -wipe"
 ...

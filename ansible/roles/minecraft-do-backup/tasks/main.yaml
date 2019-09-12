@@ -1,28 +1,26 @@
 ---
 - name: "Create backups dir if it doesn't exist"
-  shell: "mkdir -p ~/backups"
-  become: yes
-  become_user: "minecraft"
+  file:
+    path: "{{ minecraft.server.backup_dir }}"
+    state: directory
+    owner: "{{ minecraft.user.username }}"
+    group: "{{ minecraft.user.username }}"
 
 - name: "Generate timestamp for backup file name"
   shell: date +"%m-%d-%Y-%H-%M-%S"
   register: mc_backup_timestamp
-  become: yes
-  become_user: "minecraft"
 
 - name: "Set name for backup file"
   set_fact:
     mc_backup_file_name: "foolcraft3-v1.6-{{ mc_backup_timestamp.stdout }}.tar"
-  become: yes
-  become_user: "minecraft"
 
 - name: "Perform archive backup"
-  shell: "tar -cvf ~/backups/{{ mc_backup_file_name }} ~/foolcraft3-v1.6/"
+  shell: "tar -cvf {{ minecraft.server.backup_dir }}/{{ mc_backup_file_name }} ~/foolcraft3-v1.6/"
   become: yes
-  become_user: "minecraft"
+  become_user: "{{ minecraft.user.username }}"
 
 - name: "Compress archive"
-  shell: "gzip ~/backups/{{ mc_backup_file_name }}"
+  shell: "gzip {{ minecraft.server.backup_dir }}/{{ mc_backup_file_name }}"
   become: yes
-  become_user: "minecraft"
+  become_user: "{{ minecraft.user.username }}"
 ...

@@ -1,6 +1,13 @@
 ---
-- name: 'Start Minecraft server'
-  become: true
-  become_user: 'minecraft'
-  command: '~/foolcraft3-v1.6/start.sh'
+- name: "Start minecraft server with screen"
+  command: "screen -dmS \
+    {{ minecraft.server.screen_session_name }} \
+    java \
+    -Xmx{{ minecraft.jvm.max_memory }} \
+    -Xms{{ minecraft.jvm.max_memory }} \
+    -jar {{ minecraft.server.forge_jar }}"
+  args:
+    chdir: "{{ minecraft.server.installed_dir }}"
+  become: yes
+  become_user: "{{ minecraft.user.username }}"
 ...
