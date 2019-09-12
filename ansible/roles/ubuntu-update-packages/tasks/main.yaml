@@ -1,8 +1,7 @@
 ---
-- name: 'Update cache, Upgrade Packages, Auto-remove unnecessary'
-  become: true
+- name: "Update cache, Upgrade all packages"
   apt:
-    autoremove: yes
     update_cache: yes
-    upgrade: yes
+    name: "*"
+    state: latest
 ...
