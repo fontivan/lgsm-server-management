@@ -1,0 +1,10 @@
+---
+ark:
+  user:
+    username: "arkserver"
+    home_dir: "/home/arkserver"
+  server:
+    installed_dir: ""
+    backup_dir: ""
+    cli_exec: "/home/arkserver/arkserver"
+...
