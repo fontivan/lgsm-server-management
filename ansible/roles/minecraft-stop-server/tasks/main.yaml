@@ -1,7 +1,11 @@
 ---
 - name: "Kill screen session running minecraft"
   command: "screen -S {{ minecraft.server.screen_session_name }} -X quit"
+  become: yes
+  become_user: "{{ minecraft.user.username }}"
 
 - name: "Cleanup old screen sessions"
   command: "screen -wipe"
+  become: yes
+  become_user: "{{ minecraft.user.username }}"
 ...
