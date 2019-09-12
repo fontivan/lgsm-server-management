@@ -1,6 +1,6 @@
 ---
-- name: 'Backup ARK server'
-  become: true
-  become_user: 'arkserver'
-  command: '~/arkserver backup'
+- name: "Backup ARK server"
+  command: "{{ ark.server.cli_exec }} backup"
+  become: yes
+  become_user: "{{ ark.user.username }}"
 ...
