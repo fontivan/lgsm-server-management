@@ -1,5 +1,9 @@
 ---
 - name: Backup lgsm server
-  ansible.builtin.command: "{{ install_script_binary_path }} backup"
+  ansible.builtin.command:
+    cmd: "{{ install_script_binary_path }} backup"
+    chdir: "{{ user_home_folder }}"
   become: true
   become_user: "{{ installation_user }}"
+  register: backup_result
+  failed_when: backup_result.rc not in [0, 3]

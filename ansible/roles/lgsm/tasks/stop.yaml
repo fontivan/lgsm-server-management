@@ -3,4 +3,5 @@
   ansible.builtin.command: "{{ install_script_binary_path }} stop"
   become: true
   become_user: "{{ installation_user }}"
-  ignore_errors: true
+  register: stop_result
+  failed_when: stop_result.rc not in [0,2]
