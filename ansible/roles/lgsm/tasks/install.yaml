@@ -20,4 +20,4 @@
         chdir: "{{ user_home_folder }}"
 
     - name: Execute lgsm install
-      ansible.builtin.command: "{{ install_script_binary_path }} install"
+      ansible.builtin.command: "{{ install_script_binary_path }} auto-install"
