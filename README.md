@@ -1,5 +1,12 @@
 Ansible playbooks to manage VMs
 
+# Prerequisites
+
+1. VM should be installed and ready to go
+2. The root user on the vm should already have your authorized_key added
+
+# Usage
+
 1. Checkout git repo:
 ```bash
 git clone $url
