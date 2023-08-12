@@ -2,7 +2,10 @@
 reboot_required: false
 
 installation_user: arkserver
-install_script_binary_path: /home/{{ installation_user }}/{{ installation_user }}
+user_home_folder: "/home/{{ installation_user }}"
+
+lgsm_script_path: "{{ user_home_folder }}/linuxgsm.sh"
+install_script_binary_path: "{{ user_home_folder }}/{{ installation_user }}"
 
 firewall_ports:
   - 25147

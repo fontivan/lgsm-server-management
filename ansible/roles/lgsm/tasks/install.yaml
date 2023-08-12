@@ -11,11 +11,13 @@
     - name: Download lgsm installation script from website
       ansible.builtin.get_url:
         url: https://linuxgsm.sh
-        dest: linuxgsm.sh
+        dest: "{{ lgsm_script_path }}"
         mode: "0750"
 
     - name: Install the binary for the specific server
-      ansible.builtin.command: bash linuxgsm.sh {{ installation_user }}
+      ansible.builtin.command:
+        cmd: bash {{ lgsm_script_path }} {{ installation_user }}
+        chdir: "{{ user_home_folder }}"
 
     - name: Execute lgsm install
       ansible.builtin.command: "{{ install_script_binary_path }} install"
