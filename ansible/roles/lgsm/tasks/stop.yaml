@@ -1,6 +1,8 @@
 ---
 - name: Stop lgsm server
-  ansible.builtin.command: "{{ install_script_binary_path }} stop"
+  ansible.builtin.command:
+    cmd: "{{ install_script_binary_path }} stop"
+    chdir: "{{ user_home_folder }}"
   become: true
   become_user: "{{ installation_user }}"
   register: stop_result
