@@ -37,13 +37,14 @@
   block:
 
     - name: Check Debian codename
-      debug:
+      ansible.builtin.debug:
         msg: "Debian codename is {{ ansible_distribution_release }}"
 
     - name: Copy apt sources
       ansible.builtin.copy:
         src: files/debian/{{ ansible_distribution_release }}/sources.list
         dest: /etc/apt/sources.list
+        mode: "0640"
 
     - name: Enable i386 architecture
       ansible.builtin.command: dpkg --add-architecture i386
