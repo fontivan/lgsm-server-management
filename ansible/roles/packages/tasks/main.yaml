@@ -40,12 +40,10 @@
       debug:
         msg: "Debian codename is {{ ansible_distribution_release }}"
 
-    - name: Template apt sources
-      template:
-        src: sources.list.j2
+    - name: Copy apt sources
+      ansible.builtin.copy:
+        src: files/debian/{{ ansible_distribution_release }}/sources.list
         dest: /etc/apt/sources.list
-      vars:
-        debian_release: "{{ ansible_distribution_release }}"
 
     - name: Enable i386 architecture
       ansible.builtin.command: dpkg --add-architecture i386
