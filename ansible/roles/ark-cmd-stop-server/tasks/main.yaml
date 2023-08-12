@@ -1,7 +1,0 @@
----
-- name: "Stop ARK server"
-  command: "{{ ark.server.cli_exec }} stop"
-  become: yes
-  become_user: "{{ ark.user.username }}"
-  ignore_errors: yes
-...

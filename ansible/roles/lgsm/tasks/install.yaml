@@ -1,0 +1,21 @@
+---
+- name: Create lgsm server user
+  ansible.builtin.user:
+    name: "{{ installation_user }}"
+    state: present
+
+- name: Run commands as new user
+  become: true
+  become_user: "{{ installation_user }}"
+  block:
+    - name: Download lgsm installation script from website
+      ansible.builtin.get_url:
+        url: https://linuxgsm.sh
+        dest: linuxgsm.sh
+        mode: "0750"
+
+    - name: Install the binary for the specific server
+      ansible.builtin.command: bash linuxgsm.sh {{ installation_user }}
+
+    - name: Execute lgsm install
+      ansible.builtin.command: "{{ install_script_binary_path }} install"

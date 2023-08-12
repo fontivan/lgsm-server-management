@@ -1,14 +1,22 @@
 ---
-minecraft:
-  user: 
-    username: "minecraft"
-    home_dir: "/home/minecraft"
-  server:
-    installed_dir: "/home/minecraft/foolcraft3-v1.6"
-    backup_dir: "/home/minecraft/backups"
-    forge_jar: "forge-1.12.2-14.23.5.2768-universal.jar"
-    screen_session_name: "minecraft-jvm-bg-proc"
-  jvm:
-    min_memory: "8G"
-    max_memory: "8G"
-...
+reboot_required: false
+
+installation_user: mcserver
+install_script_binary_path: /home/{{ installation_user }}/{{ installation_user }}
+
+firewall_ports:
+  - 25565
+
+package_dependencies:
+  - curl
+  - wget
+  - tar
+  - bzip2
+  - gzip
+  - unzip
+  - python3
+  - binutils
+  - bc
+  - jq
+  - tmux
+  - java-17-openjdk

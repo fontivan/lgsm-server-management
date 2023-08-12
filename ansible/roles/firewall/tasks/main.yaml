@@ -1,0 +1,58 @@
+---
+- name: Configure firewall for RHEL
+  when: ansible_facts['os_family'] == "RHEL"
+  become: true
+  block:
+    - name: Install firewalld
+      ansible.builtin.yum:
+        name: firewalld
+        state: present
+      register: firewalld_install
+
+    - name: Allow SSH connections
+      ansible.posix.firewalld:
+        zone: public
+        service: ssh
+        permanent: true
+        state: enabled
+      register: firewalld_ssh
+
+    - name: Allow specific port
+      ansible.posix.firewalld:
+        zone: public
+        port: "{{ item }}/tcp"
+        permanent: true
+        state: enabled
+      loop: "{{ firewall_ports }}"
+      when: firewall_ports is defined
+      register: firewalld_ports
+
+    - name: Reload firewalld
+      ansible.builtin.command: firewall-cmd --reload
+      changed_when: false
+      when: firewalld_install is changed || firewalld_ssh is changed || firewalld_ports is changed
+
+- name: Configure firewall for Debian
+  when: ansible_facts['os_family'] == "Debian"
+  become: true
+  block:
+    - name: Install ufw
+      ansible.builtin.apt:
+        name: ufw
+        state: present
+
+    - name: Allow ssh connections
+      community.general.ufw:
+        rule: allow
+        port: 22
+
+    - name: Allow defined ports
+      community.general.ufw:
+        rule: allow
+        port: "{{ item }}"
+      loop: "{{ firewall_ports }}"
+      when: firewall_ports is defined
+
+    - name: Enable ufw
+      community.general.ufw:
+        state: enabled

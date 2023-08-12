@@ -1,0 +1,58 @@
+---
+- name: Install dependencies for RHEL
+  when: ansible_facts['os_family'] == "RHEL"
+  become: true
+  block:
+    - name: Install the EPEL repository
+      ansible.builtin.yum_repository:
+        name: epel
+        description: EPEL YUM repo
+        baseurl: https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm
+        gpgcheck: true
+        gpgkey: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}
+        enabled: true
+        state: present
+
+    - name: Install packages
+      ansible.builtin.yum:
+        name: "{{ package_dependencies }}"
+        state: present
+      register: pkg_install
+
+    - name: Update cache, Upgrade all packages
+      ansible.builtin.yum:
+        update_cache: true
+        name: "*"
+        state: latest # noqa package-latest
+      register: pkg_update
+
+    - name: Check if a reboot is required
+      ansible.builtin.set_fact:
+        reboot_required: true
+      when: pkg_install.changed || pkg_update.changed
+
+- name: Install dependencies for Debian
+  when: ansible_facts['os_family'] == "Debian"
+  become: true
+  block:
+    - name: Enable i386 architecture
+      ansible.builtin.command: dpkg --add-architecture i386
+      changed_when: false
+
+    - name: Install packages
+      ansible.builtin.apt:
+        name: "{{ package_dependencies }}"
+        state: present
+      register: pkg_install
+
+    - name: Update cache, Upgrade all packages
+      ansible.builtin.apt:
+        update_cache: true
+        name: "*"
+        state: latest # noqa package-latest
+      register: pkg_update
+
+    - name: Check if a reboot is required
+      ansible.builtin.set_fact:
+        reboot_required: true
+      when: pkg_install.changed || pkg_update.changed

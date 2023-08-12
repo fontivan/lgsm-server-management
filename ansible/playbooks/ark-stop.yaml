@@ -1,7 +1,0 @@
----
-- hosts: 
-    - ark
-  remote_user: 'arkserver'
-  roles:
-    - ../roles/ark-cmd-stop-server
-...

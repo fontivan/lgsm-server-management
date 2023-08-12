@@ -1,0 +1,6 @@
+---
+- name: Stop lgsm server
+  ansible.builtin.command: "{{ install_script_binary_path }} stop"
+  become: true
+  become_user: "{{ installation_user }}"
+  ignore_errors: true

@@ -1,0 +1,75 @@
+---
+- name: Validate before starting plays
+  hosts: localhost
+  tasks:
+    - name: Fail if target host is not defined
+      ansible.builtin.assert:
+        that:
+          - target_hosts is defined
+          - target_hosts is iterable
+        fail_msg: target_hosts must be defined and iterable. You can define a host using '-e target_hosts=$myhost'
+
+- name: Execute plays on remote host
+  hosts: "{{ target_hosts | default(omit) }}"
+  remote_user: root
+  tasks:
+    - name: Import package role
+      ansible.builtin.import_role:
+        name: packages
+      tags:
+        - packages
+        - install
+
+    - name: Import reboot role
+      ansible.builtin.import_role:
+        name: reboot
+      tags:
+        - packages
+        - install
+        - reboot
+
+    - name: Import firewall role
+      ansible.builtin.import_role:
+        name: firewall
+      tags:
+        - install
+
+    - name: Import install role
+      ansible.builtin.import_role:
+        name: lgsm
+        tasks_from: install.yaml
+      tags:
+        - install
+
+    - name: Import stop role
+      ansible.builtin.import_role:
+        name: lgsm
+        tasks_from: stop.yaml
+      tags:
+        - backup
+        - restart
+        - stop
+        - update
+
+    - name: Import backup role
+      ansible.builtin.import_role:
+        name: lgsm
+        tasks_from: backup.yaml
+      tags:
+        - backup
+
+    - name: Import update role
+      ansible.builtin.import_role:
+        name: lgsm
+        tasks_from: update.yaml
+      tags:
+        - update
+
+    - name: Import start role
+      ansible.builtin.import_role:
+        name: lgsm
+        tasks_from: start.yaml
+      tags:
+        - backup
+        - restart
+        - start

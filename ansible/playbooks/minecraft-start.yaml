@@ -1,7 +1,0 @@
----
-- hosts: 
-    - minecraft
-  remote_user: 'minecraft'
-  roles:
-    - ../roles/minecraft-start-server
-...

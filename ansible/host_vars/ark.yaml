@@ -1,10 +1,31 @@
 ---
-ark:
-  user:
-    username: "arkserver"
-    home_dir: "/home/arkserver"
-  server:
-    installed_dir: ""
-    backup_dir: ""
-    cli_exec: "/home/arkserver/arkserver"
-...
+reboot_required: false
+
+installation_user: arkserver
+install_script_binary_path: /home/{{ installation_user }}/{{ installation_user }}
+
+firewall_ports:
+  - 25147
+  - 27015
+  - 27031
+  - 27032
+  - 27033
+  - 27034
+  - 27035
+  - 27036
+
+package_dependencies:
+  - curl
+  - wget
+  - tar
+  - bzip2
+  - gzip
+  - unzip
+  - python3
+  - binutils
+  - bc
+  - jq
+  - tmux
+  - glibc.i686
+  - libstdc++
+  - libstdc++.i686

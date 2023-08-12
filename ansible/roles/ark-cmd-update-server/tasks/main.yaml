@@ -1,6 +1,0 @@
----
-- name: "Update ARK server"
-  command: "{{ ark.server.cli_exec }} update"
-  become: yes
-  become_user: "{{ ark.user.username }}"
-...

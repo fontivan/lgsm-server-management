@@ -1,6 +1,0 @@
----
-- name: "Start ARK server"
-  command: "{{ ark.server.cli_exec }} start"
-  become: yes
-  become_user: "{{ ark.user.username }}"
-...

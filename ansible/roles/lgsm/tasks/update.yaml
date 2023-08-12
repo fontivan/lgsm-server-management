@@ -1,0 +1,5 @@
+---
+- name: Update lgsm server
+  ansible.builtin.command: "{{ install_script_binary_path }} update"
+  become: true
+  become_user: "{{ installation_user }}"
