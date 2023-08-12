@@ -13,6 +13,10 @@
     paths: "{{ lgsm_backup_path }}"
   register: backup_file_list
 
+# Rsync does not seem to support transferring between two remote hosts
+# There use scp with the -3 option instead
+# The controller has ssh keys authorized on both hosts
+# But neither remote host has an authorized key on the other
 - name: Upload files to remote backup host
   command:
     cmd: "scp -3 root@{{ hostvars[inventory_hostname].ansible_host }}:{{ item }} root@{{ hostvars['backuphost'].ansible_host }}:{{ remote_backup_path }}/{{ item | basename }}"

@@ -29,7 +29,7 @@
     - name: Check if a reboot is required
       ansible.builtin.set_fact:
         reboot_required: true
-      when: pkg_install.changed || pkg_update.changed
+      when: pkg_install.changed or pkg_update.changed
 
 - name: Install dependencies for Debian
   when: ansible_facts['os_family'] == "Debian"
