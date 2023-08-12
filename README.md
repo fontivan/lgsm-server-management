@@ -2,8 +2,9 @@ Ansible playbooks to manage VMs
 
 # Prerequisites
 
-1. VM should be installed and ready to go
+1. VM should already have OS installed (RHEL or Debian)
 2. The root user on the vm should already have your authorized_key added
+3. Update the inventory file to account for any local IP address changes
 
 # Usage
 
