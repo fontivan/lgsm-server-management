@@ -5,6 +5,8 @@ installation_user: arkserver
 user_home_folder: "/home/{{ installation_user }}"
 
 lgsm_script_path: "{{ user_home_folder }}/linuxgsm.sh"
+lgsm_backup_path: "{{ user_home_folder }}/lgsm/backup"
+remote_backup_path: "/mnt/user/diskarray/backups/lgsm/ark"
 install_script_binary_path: "{{ user_home_folder }}/{{ installation_user }}"
 
 firewall_ports:
@@ -18,22 +20,22 @@ firewall_ports:
   - 27036
 
 package_dependencies:
-  - curl
-  - wget
-  - file
-  - tar
-  - bzip2
-  - gzip
-  - unzip
-  - bsdmainutils
-  - python3
-  - util-linux
-  - ca-certificates
-  - binutils
   - bc
+  - binutils
+  - bsdmainutils
+  - bzip2
+  - ca-certificates
+  - curl
+  - file
+  - gzip
   - jq
-  - tmux
-  - netcat
   - lib32gcc1
   - lib32stdc++6
   - libsdl2-2.0-0:i386
+  - netcat
+  - python3
+  - tar
+  - tmux
+  - unzip
+  - util-linux
+  - wget

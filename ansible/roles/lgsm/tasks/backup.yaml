@@ -7,3 +7,14 @@
   become_user: "{{ installation_user }}"
   register: backup_result
   failed_when: backup_result.rc not in [0, 3]
+
+- name: Get list of backups on the LGSM server
+  ansible.builtin.find:
+    paths: "{{ lgsm_backup_path }}"
+  register: backup_file_list
+
+- name: Upload files to remote backup host
+  command:
+    cmd: "scp -3 root@{{ hostvars[inventory_hostname].ansible_host }}:{{ item }} root@{{ hostvars['backuphost'].ansible_host }}:{{ remote_backup_path }}/{{ item | basename }}"
+  with_items: "{{ backup_file_list.files | map(attribute='path') | list }}"
+  delegate_to: localhost
