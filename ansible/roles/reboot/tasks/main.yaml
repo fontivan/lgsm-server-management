@@ -2,11 +2,10 @@
 - name: Check if the "reboot" tag was specified"
   ansible.builtin.set_fact:
     reboot_required: true
-  when: reboot in ansible_run_tags
+  when: "'reboot' in ansible_run_tags"
 
-- name: Reboot if necessary
+- name: Rebooting host
   ansible.builtin.reboot:
-    name: Sending system down for reboot now!
     reboot_timeout: 1200
   become: true
   when: reboot_required

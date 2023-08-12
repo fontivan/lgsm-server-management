@@ -19,4 +19,4 @@ package_dependencies:
   - bc
   - jq
   - tmux
-  - java-17-openjdk
+  - openjdk-17-jre
