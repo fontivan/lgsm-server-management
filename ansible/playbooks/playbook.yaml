@@ -20,6 +20,17 @@
         - packages
         - install
 
+    - name: Import stop role
+      ansible.builtin.import_role:
+        name: lgsm
+        tasks_from: stop.yaml
+      tags:
+        - backup
+        - reboot
+        - restart
+        - stop
+        - update
+
     - name: Import reboot role
       ansible.builtin.import_role:
         name: reboot
@@ -41,16 +52,6 @@
       tags:
         - install
 
-    - name: Import stop role
-      ansible.builtin.import_role:
-        name: lgsm
-        tasks_from: stop.yaml
-      tags:
-        - backup
-        - restart
-        - stop
-        - update
-
     - name: Import backup role
       ansible.builtin.import_role:
         name: lgsm
@@ -71,6 +72,7 @@
         tasks_from: start.yaml
       tags:
         - backup
+        - reboot
         - restart
         - start
         - update
