@@ -54,6 +54,7 @@
       ansible.builtin.apt:
         name: "{{ package_dependencies }}"
         state: present
+      when: package_dependencies is defined
       register: pkg_install
 
     - name: Update cache, Upgrade all packages
