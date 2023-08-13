@@ -1,0 +1,35 @@
+---
+reboot_required: false
+
+installation_user: factorio
+user_home_folder: "/home/{{ installation_user }}"
+
+lgsm_script_path: "{{ user_home_folder }}/linuxgsm.sh"
+lgsm_backup_path: "{{ user_home_folder }}/lgsm/backup"
+remote_backup_path: "/mnt/user/diskarray/backups/lgsm/factorio"
+install_script_binary_path: "{{ user_home_folder }}/{{ installation_user }}"
+
+firewall_ports:
+  - 34197
+
+package_dependencies:
+  - bc
+  - binutils
+  - bsdmainutils
+  - bzip2
+  - ca-certificates
+  - curl
+  - distro-info
+  - gzip
+  - jq
+  - lib32gcc-s1
+  - lib32stdc++6
+  - libsdl2-2.0-0:i386
+  - netcat
+  - python3
+  - tar
+  - tmux
+  - unzip
+  - util-linux
+  - wget
+  - xz-utils
