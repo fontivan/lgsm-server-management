@@ -8,7 +8,7 @@ PY = python3
 VENV = venv
 BIN=$(ROOT_DIR)/$(VENV)/bin
 
-all: ansible-lint ansible-syntax-check
+all: ansible-lint ansible-syntax-check yamllint
 
 $(VENV): requirements/ci.txt requirements/usage.txt requirements/ansible-galaxy.yaml
 	$(PY) -m venv $(VENV)
@@ -19,11 +19,15 @@ $(VENV): requirements/ci.txt requirements/usage.txt requirements/ansible-galaxy.
 
 .PHONY: ansible-lint
 ansible-lint: $(VENV)
-	(cd ansible && $(BIN)/ansible-lint)
+	(cd ansible && $(BIN)/ansible-lint -c .ansiblelint)
 
 .PHONY: ansible-syntax-check
 ansible-syntax-check: $(VENV)
 	(cd ansible && $(BIN)/ansible-playbook playbooks/playbook.yaml --syntax-check)
+
+.PHONY: yamllint
+yamllint: $(VENV)
+	$(BIN)/yamllint .
 
 clean:
 	rm -rf $(VENV)

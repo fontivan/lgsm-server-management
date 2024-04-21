@@ -19,6 +19,10 @@
 # But neither remote host has an authorized key on the other
 - name: Upload files to remote backup host
   ansible.builtin.command:
-    cmd: "scp -3 root@{{ hostvars[inventory_hostname].ansible_host }}:{{ item }} root@{{ hostvars['backuphost'].ansible_host }}:{{ remote_backup_path }}/{{ item | basename }}"
+    cmd: >-
+      scp -3
+      root@{{ hostvars[inventory_hostname].ansible_host }}:{{ item }}
+      root@{{ hostvars['backuphost'].ansible_host }}:
+      {{ remote_backup_path }}/{{ item | basename }}"
   with_items: "{{ backup_file_list.files | map(attribute='path') | list }}"
   delegate_to: localhost

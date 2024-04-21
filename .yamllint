@@ -1,0 +1,7 @@
+---
+
+# Extends the default conf bbut add a few more options
+extends: default
+
+ignore:
+  - venv/

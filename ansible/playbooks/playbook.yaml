@@ -7,7 +7,9 @@
         that:
           - target_hosts is defined
           - target_hosts is iterable
-        fail_msg: target_hosts must be defined and iterable. You can define a host using '-e target_hosts=$myhost'
+        fail_msg: |
+          target_hosts must be defined and iterable.
+          You can define a host using '-e target_hosts=$myhost'
 
 - name: Execute plays on remote host
   hosts: "{{ target_hosts | default(omit) }}"

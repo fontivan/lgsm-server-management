@@ -30,7 +30,10 @@
     - name: Reload firewalld
       ansible.builtin.command: firewall-cmd --reload
       changed_when: false
-      when: firewalld_install is changed or firewalld_ssh is changed or firewalld_ports is changed
+      when: >-
+        firewalld_install is changed or
+        firewalld_ssh is changed or
+        firewalld_ports is changed
 
 - name: Configure firewall for Debian
   when: ansible_facts['os_family'] == "Debian"
