@@ -8,23 +8,24 @@ Ansible playbooks to manage VMs
 
 # Usage
 
-1. Checkout git repo:
+1. Prepare the venv:
+
 ```bash
-git clone $url
+make venv
 ```
-2. Move into repo:
+
+2. Activate the venv:
 ```bash
-cd vm-management/
+source venv/bin/activate
 ```
-3. Install requirements:
-```bash
-ansible-galaxy install -r requirements.yaml
-```
-4. Move into ansible folder
+
+3. Move into ansible folder
+
 ```bash
 cd ansible/
 ```
-5. Prepare an ansible playbook command based on the selected hosts and tags
+
+4. Prepare an ansible playbook command based on the selected hosts and tags
 
 | Tag       | Description |
 | ---       | ---         |

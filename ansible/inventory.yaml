@@ -17,7 +17,7 @@ all:
           ansible_ssh_private_key_file: ~/.ssh/id_rsa
         valheim:
           ansible_port: "22"
-          ansible_host: 192.168.2.201
+          ansible_host: 192.168.2.207
           ansible_ssh_private_key_file: ~/.ssh/id_rsa
         testbed:
           ansible_port: "22"
