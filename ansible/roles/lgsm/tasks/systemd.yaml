@@ -1,0 +1,22 @@
+---
+
+- name: "Ensure the systemd service exists for {{ installation_user }}"
+  ansible.builtin.template:
+    src: "startup.service"
+    dest: "/etc/systemd/system/{{ installation_user }}.service"
+    mode: "0640"
+  register: template_service
+  become: true
+
+- name: "Reload systemd daemon (if required)"
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+  when: template_service.changed
+  become: true
+
+- name: "Start and enable the service for {{ installation_user }}"
+  ansible.builtin.systemd_service:
+    name: "{{ installation_user }}"
+    state: started
+    enabled: true
+  become: true
