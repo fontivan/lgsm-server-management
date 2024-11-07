@@ -8,10 +8,11 @@
   register: template_service
   become: true
 
+# TODO: Convert this to a handler instead of ignoring the linting error
 - name: "Reload systemd daemon (if required)"
   ansible.builtin.systemd_service:
     daemon_reload: true
-  when: template_service.changed
+  when: template_service.changed # noqa: no-handler
   become: true
 
 - name: "Start and enable the service for {{ installation_user }}"
