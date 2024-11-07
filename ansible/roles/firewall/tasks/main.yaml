@@ -4,7 +4,7 @@
   become: true
   block:
     - name: Install firewalld
-      ansible.builtin.yum:
+      ansible.builtin.dnf:
         name: firewalld
         state: present
       register: firewalld_install
