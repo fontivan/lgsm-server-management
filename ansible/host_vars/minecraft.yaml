@@ -1,13 +1,5 @@
 ---
-reboot_required: false
-
 installation_user: mcserver
-user_home_folder: "/home/{{ installation_user }}"
-
-lgsm_script_path: "{{ user_home_folder }}/linuxgsm.sh"
-lgsm_backup_path: "{{ user_home_folder }}/lgsm/backup"
-remote_backup_path: "/mnt/user/diskarray/backups/lgsm/minecraft"
-install_script_binary_path: "{{ user_home_folder }}/{{ installation_user }}"
 
 firewall_ports:
   - 25565

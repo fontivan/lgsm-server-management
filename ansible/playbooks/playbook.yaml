@@ -13,7 +13,7 @@
 
 - name: Execute plays on remote host
   hosts: "{{ target_hosts | default(omit) }}"
-  remote_user: root
+  remote_user: "{{ ansible_user }}"
   tasks:
     - name: Import package role
       ansible.builtin.import_role:
@@ -21,6 +21,13 @@
       tags:
         - packages
         - install
+
+    - name: Import clear clocks role
+      ansible.builtin.import_role:
+        name: lgsm
+        tasks_from: clear_locks.yaml
+      tags:
+        - clear_locks
 
     - name: Import stop role
       ansible.builtin.import_role:
@@ -53,6 +60,24 @@
         tasks_from: install.yaml
       tags:
         - install
+
+    - name: Import cron role
+      ansible.builtin.import_role:
+        name: lgsm
+        tasks_from: cron.yaml
+      tags:
+        - cron
+        - install
+        - update
+
+    - name: Import systemd role
+      ansible.builtin.import_role:
+        name: lgsm
+        tasks_from: systemd.yaml
+      tags:
+        - systemd
+        - install
+        - update
 
     - name: Import backup role
       ansible.builtin.import_role:

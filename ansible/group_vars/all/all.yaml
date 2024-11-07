@@ -1,1 +1,13 @@
 ---
+reboot_required: false
+
+installation_user: placeholder-override-me-in-host-vars
+user_home_folder: "/home/{{ installation_user }}"
+
+lgsm_script_path: "{{ user_home_folder }}/linuxgsm.sh"
+lgsm_backup_path: "{{ user_home_folder }}/lgsm/backup"
+lgsm_lock_path: "{{ user_home_folder }}/lgsm/lock"
+backup_log_directory: "{{ user_home_folder }}/lgsm/logs/backup"
+
+remote_backup_path: "/mnt/user/diskarray/backups/lgsm/{{ installation_user }}"
+install_script_binary_path: "{{ user_home_folder }}/{{ installation_user }}"

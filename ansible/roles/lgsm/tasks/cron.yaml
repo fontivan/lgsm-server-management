@@ -1,0 +1,12 @@
+---
+
+- name: "Ensure the backup cron job is created for {{ installation_user }}"
+  ansible.builtin.cron:
+    name: "{{ installation_user }}"
+    minute: "0"
+    hour: "5"
+    user: "{{ installation_user }}"
+    job: >-
+      {{ install_script_binary_path }} backup >
+      {{ backup_log_directory }}/backup-$(date +%Y-%m-%d_%H-%M-%S_%) 2>&"
+  become: true

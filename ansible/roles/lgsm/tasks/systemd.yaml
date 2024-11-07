@@ -1,0 +1,23 @@
+---
+
+- name: "Ensure the systemd service exists for {{ installation_user }}"
+  ansible.builtin.template:
+    src: "startup.service"
+    dest: "/etc/systemd/system/{{ installation_user }}.service"
+    mode: "0640"
+  register: template_service
+  become: true
+
+# TODO: Convert this to a handler instead of ignoring the linting error
+- name: "Reload systemd daemon (if required)"
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+  when: template_service.changed # noqa: no-handler
+  become: true
+
+- name: "Start and enable the service for {{ installation_user }}"
+  ansible.builtin.systemd_service:
+    name: "{{ installation_user }}"
+    state: started
+    enabled: true
+  become: true

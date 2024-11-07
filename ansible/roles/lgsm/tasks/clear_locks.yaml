@@ -1,0 +1,12 @@
+---
+
+- name: Print warning for lock directory
+  ansible.builtin.debug:
+    msg: >-
+      WARNING: Deleting the lock should only be
+      performed if you are sure what you are doing...
+
+- name: Delete LGSM lock directory on {{ installation_user }}
+  ansible.builtin.file:
+    path: "{{ lgsm_lock_path }}"
+    state: absent
