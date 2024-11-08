@@ -22,12 +22,6 @@
     - name: Execute lgsm install
       ansible.builtin.command: "{{ install_script_binary_path }} auto-install"
 
-    - name: Create backup log directory
-      ansible.builtin.file:
-        path: "{{ backup_log_directory }}"
-        state: directory
-        mode: "0640"
-
 - name: Include cron tasks
   ansible.builtin.include_tasks: cron.yaml
 
