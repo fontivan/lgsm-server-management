@@ -1,12 +1,20 @@
 ---
 
+- name: "Template wrapper script for cron"
+  ansible.builtin.template:
+    src: "backup_cron_wrapper.sh"
+    dest: "{{ user_home_folder }}/backup_cron_wrapper.sh"
+    mode: "0754"
+    owner: "{{ installation_user }}"
+    group: "{{ installation_user }}"
+  become: true
+  become_user: "{{ installation_user }}"
+
 - name: "Ensure the backup cron job is created for {{ installation_user }}"
   ansible.builtin.cron:
     name: "{{ installation_user }}"
     minute: "0"
     hour: "5"
     user: "{{ installation_user }}"
-    job: >-
-      {{ install_script_binary_path }} backup >
-      {{ backup_log_directory }}/backup-$(date +%Y-%m-%d_%H-%M-%S_%) 2>&"
+    job: "{{ user_home_folder }}/backup_cron_wrapper.sh"
   become: true

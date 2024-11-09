@@ -22,7 +22,7 @@
         - packages
         - install
 
-    - name: Import clear clocks role
+    - name: Import clear locks role
       ansible.builtin.import_role:
         name: lgsm
         tasks_from: clear_locks.yaml
