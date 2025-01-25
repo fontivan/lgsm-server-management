@@ -12,7 +12,7 @@
 - name: "Reload systemd daemon (if required)"
   ansible.builtin.systemd_service:
     daemon_reload: true
-  when: template_service.changed # noqa: no-handler
+  when: template_service.changed  # noqa: no-handler
   become: true
 
 - name: "Start and enable the service for {{ installation_user }}"
